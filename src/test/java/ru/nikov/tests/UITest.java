@@ -8,8 +8,6 @@ import ru.nikov.pages.MainPage;
 import ru.nikov.pages.ProductCard;
 import ru.nikov.pages.SearchResults;
 
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -44,18 +42,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
         searchResult.chooseFirstItem();
 
-        firstItem.getFirstProductName()
+        firstItem.getFirstAddedProductName()
                 .addToCompareList()
                 .close();
 
         filter.setFilterBrandTitBit();
         searchResult.chooseSecondItem();
 
-        secondItem.getSecondProductName()
+        secondItem.getSecondAddedProductName()
                 .addToCompareList().goToCompareList();
 
+        step("Проверяем что добавленные товары, совпадают с товарами из списка сравнения", () ->{
+            assertTrue(firstItem.getFirstItemName().equalsIgnoreCase( compare.getFirstItemNameFromCompareList()) & secondItem.getSecondItemName().equals( compare.getSecondItemNameFromCompareList()));
+        });
+
         compare.verifyTotalPrice()
-                .verifyAddedItems()
                 .deleteFirstAddedItem()
                 .verifyItemDeleted()
                 .deleteCompareList()

@@ -32,8 +32,6 @@ public class ProductCard {
         return this;
     }
 
-
-
     @Step("Открываем список сравнения")
     public ProductCard goToCompareList() {
         $( "a[href*='/my/compare-lists']" ).shouldBe( Condition.visible ).click();
@@ -42,14 +40,14 @@ public class ProductCard {
     }
 
     @Step("Получаем имя первого  товара")
-    public ProductCard getFirstProductName() {
+    public ProductCard getFirstAddedProductName() {
         String s = $( "meta[itemprop='name']" ).getAttribute( "content" );
         firstItemName = s;
 
         return this;
     }
     @Step("Получаем имя второго  товара")
-    public ProductCard getSecondProductName() {
+    public ProductCard getSecondAddedProductName() {
         String s = $( "meta[itemprop='name']" ).getAttribute( "content" );
         secondItemName = s;
 

@@ -2,7 +2,6 @@ package ru.nikov.pages;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.ElementsCollection;
 import io.qameta.allure.Step;
-import java.util.function.BooleanSupplier;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
@@ -21,22 +20,14 @@ public class ComparePage {
 
         return this;
     }
-
-    @Step("Проверяем что добавленные товары, совпадают с товарами из списка сравнения")
-    public ComparePage verifyAddedItems() {
-        assertTrue( parseInt( (productPrice.get( 0 )).getAttribute( "data-autotest-value" ) )
-                + parseInt( (productPrice.get( 1 )).getAttribute( "data-autotest-value" ) ) < 300 );
-
-        return this;
-    }
     @Step("Получаем имя первого продукта")
-    public String getFirstItemName() {
+    public String getFirstItemNameFromCompareList() {
         String s = (products.get( 1 ).text());
 
         return s;
     }
     @Step("Получаем имя второго продукта")
-    public String getSecondItemName() {
+    public String getSecondItemNameFromCompareList() {
         String s = (products.get( 0 ).text());
 
         return s;
@@ -61,7 +52,7 @@ public class ComparePage {
     @Step("Проверяем что товар производителя «Whiskas» не отображается")
     public ComparePage verifyItemDeleted() {
 
-        $$( ".zvRJM" ).shouldHave(CollectionCondition.size( 1 )).shouldHave(CollectionCondition.texts( getSecondItemName() ));
+        $$( ".zvRJM" ).shouldHave(CollectionCondition.size( 1 )).shouldHave(CollectionCondition.texts( getSecondItemNameFromCompareList() ));
 
         return this;
     }
