@@ -1,4 +1,5 @@
 package ru.nikov.tests;
+import dev.failsafe.internal.util.Assert;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -56,8 +57,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 //        System.out.println(secondItem.getSecondItemName() + " | " + compare.getSecondItemNameFromCompareList());
 
         step("Проверяем что добавленные товары, совпадают с товарами из списка сравнения", () ->{
-            assertTrue(firstItem.getFirstItemName().equalsIgnoreCase( compare.getFirstItemNameFromCompareList()));
-            assertTrue(secondItem.getSecondItemName().equalsIgnoreCase( compare.getSecondItemNameFromCompareList()));
+
+            assertTrue( firstItem.getFirstItemName().equalsIgnoreCase( compare.getFirstItemNameFromCompareList()));
+            assertTrue( secondItem.getSecondItemName().equalsIgnoreCase( compare.getSecondItemNameFromCompareList()));
+
         });
 
         compare.verifyTotalPrice()
