@@ -1,6 +1,7 @@
 package ru.nikov.pages;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -13,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class ComparePage {
     ElementsCollection productPrice = $$( "span[data-autotest-value]" );
     ElementsCollection products = $$( ".zvRJM" );
+
     @Step("Проверяем, что сумма стоимостей товаров не превышает 300 руб")
     public ComparePage verifyTotalPrice() {
         assertTrue( parseInt( (productPrice.get( 0 )).getAttribute( "data-autotest-value" ) )

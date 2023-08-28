@@ -52,8 +52,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
         secondItem.getSecondAddedProductName()
                 .addToCompareList().goToCompareList();
 
+//        System.out.println(firstItem.getFirstItemName() + " | " + compare.getFirstItemNameFromCompareList());
+//        System.out.println(secondItem.getSecondItemName() + " | " + compare.getSecondItemNameFromCompareList());
+
         step("Проверяем что добавленные товары, совпадают с товарами из списка сравнения", () ->{
-            assertTrue(firstItem.getFirstItemName().equalsIgnoreCase( compare.getFirstItemNameFromCompareList()) & secondItem.getSecondItemName().equals( compare.getSecondItemNameFromCompareList()));
+            assertTrue(firstItem.getFirstItemName().equalsIgnoreCase( compare.getFirstItemNameFromCompareList()));
+            assertTrue(secondItem.getSecondItemName().equalsIgnoreCase( compare.getSecondItemNameFromCompareList()));
         });
 
         compare.verifyTotalPrice()
